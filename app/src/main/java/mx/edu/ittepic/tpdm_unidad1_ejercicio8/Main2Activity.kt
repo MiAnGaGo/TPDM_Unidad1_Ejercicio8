@@ -4,20 +4,34 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 
 class Main2Activity : AppCompatActivity() {
-    var posicion : EditText ?= null
-    var mostrar : Button ?= null
-    var resulpos : TextView ?= null
+    var mostrar: Button? = null
+    var posicion: EditText? = null
+    var p = 0
+    var layout: LinearLayout? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
-        posicion = findViewById(R.id.posicion)
         mostrar = findViewById(R.id.mostrar)
-        resulpos = findViewById(R.id.resulpos)
-        var cadena = intent.extras?.getString("num")
-        var pos = resulpos?.text.toString()
-        resulpos?.setText("Posición: $pos: ")
+        posicion = findViewById(R.id.posicion)
+        p = posicion?.text.toString().toInt()
+        layout = findViewById(R.id.layoutpos)
+
+        mostrar?.setOnClickListener {
+            var cadena = intent.extras?.getString("num")
+            var array = arrayOf(cadena?.split(","))
+            if (p < 0 || p > array.size) AlertDialog.Builder(this).setTitle("Array Vacio")
+                .setMessage("Error!")
+                .setPositiveButton("Aceptar") { dialog, wich -> }
+                .show()
+            var posicion = TextView(this)
+            posicion?.setText("Posicion $p: $array[p]")
+            layout?.addView(posicion)
+        }
     }
 }

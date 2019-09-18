@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         valores = findViewById(R.id.valores)
         abriractivity = findViewById(R.id.abriractivity)
         abriractivity?. setOnClickListener(){
-            var abrir = Intent(this,Main2Activity::class.java)
+            val abrir = Intent(this,Main2Activity::class.java)
             num = valores?.text.toString()
             abrir.putExtra("num",num)
             startActivity(abrir)
