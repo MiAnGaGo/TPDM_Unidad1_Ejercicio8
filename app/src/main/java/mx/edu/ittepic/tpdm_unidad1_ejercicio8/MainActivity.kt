@@ -6,20 +6,26 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 
+
+
 class MainActivity : AppCompatActivity() {
-    var valores : EditText ?= null
-    var abriractivity : Button ?= null
-    var num = ""
+    var nv : EditText?=null
+    var abrir: Button?=null
+    var num=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        valores = findViewById(R.id.valores)
-        abriractivity = findViewById(R.id.abriractivity)
-        abriractivity?. setOnClickListener(){
-            val abrir = Intent(this,Main2Activity::class.java)
-            num = valores?.text.toString()
-            abrir.putExtra("num",num)
-            startActivity(abrir)
+
+        nv=findViewById(R.id.numvector)
+        abrir=findViewById(R.id.abrir)
+
+        abrir?.setOnClickListener {
+
+            num=nv?.text.toString()
+            var activity2= Intent(this,Main2Activity::class.java)
+            activity2.putExtra("num",num)
+            startActivity(activity2)
+
         }
     }
 }
